@@ -1,12 +1,14 @@
 FROM alpine:3.15
 RUN apk add --no-cache \
         bash \
+        bluez `# bluetoothctl` \
         bluez-btmon \
         bluez-deprecated `# hcidump` \
         coreutils `# timeout busybox implementation incompatible` \
         curl `# support/data https://api.macvendors.com/` \
         gawk `# in verbose mode:  %*x formats are not supported` \
         mosquitto-clients \
+        procps `# pidof` \
         tini \
     && find / -xdev -type f -perm /u+s -exec chmod -c u-s {} \; \
     && find / -xdev -type f -perm /g+s -exec chmod -c g-s {} \; \
